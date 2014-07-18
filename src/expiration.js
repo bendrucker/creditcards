@@ -25,11 +25,14 @@ exports.year = {
     var str = base + (year.toString().length === 2 ? year : '0' + year);
     return ~~str;
   },
-  isValid: function (year, pad) {
-    if (typeof year !== 'number' && typeof year !== 'string') return false;
-    return exports.year.parse(year, pad) > 0;
+  isValid: function (year) {
+    if (typeof year !== 'number') return false;
+    return year > 0;
   },
-  isFuture: function (year, pad) {
-    return internals.currentYear() <= exports.year.parse(year, pad);
+  isCurrent: function (year) {
+    return internals.currentYear() === year;
+  },
+  isFuture: function (year) {
+    return internals.currentYear() <= year;
   }
 };
