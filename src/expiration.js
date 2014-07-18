@@ -3,7 +3,7 @@
 var internals = {};
 
 exports.isFuture = function (month, year) {
-  return Date.now() >= new Date(year, month);
+  return Date.now() <= new Date(year, month);
 };
 
 exports.month = {
