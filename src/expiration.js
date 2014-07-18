@@ -2,6 +2,10 @@
 
 var internals = {};
 
+exports.isFuture = function (month, year) {
+  return Date.now() >= new Date(year, month);
+};
+
 exports.month = {
   parse: function (month) {
     return ~~month;

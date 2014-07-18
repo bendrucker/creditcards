@@ -7,6 +7,22 @@ var expiration = require('../src/expiration');
 
 describe('expiration', function () {
 
+  describe('#isFuture', function () {
+
+    it('checks whether the date is in the future', function () {
+      expect(expiration.isFuture(
+        new Date().getMonth(),
+        new Date().getYear() + 1900
+      ))
+      .to.be.false;
+      expect(expiration.isFuture(
+        new Date().getMonth() + 1,
+        new Date().getYear() + 1900
+      ))
+      .to.be.true;
+    });
+  });
+
   describe('month', function () {
 
     var month = expiration.month;
