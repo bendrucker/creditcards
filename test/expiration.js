@@ -111,7 +111,7 @@ describe('expiration', function () {
         expect(year.isCurrent(2013)).to.be.false;
       });
 
-    })
+    });
 
     describe('#isFuture', function () {
 
