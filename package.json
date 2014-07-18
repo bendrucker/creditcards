@@ -1,0 +1,29 @@
+{
+  "name": "creditcards",
+  "version": "0.0.0",
+  "description": "Utility methods for formatting and validating credit cards",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bendrucker/creditcards.git"
+  },
+  "keywords": [
+    "credit",
+    "cards",
+    "validation",
+    "formatting"
+  ],
+  "author": "Ben Drucker <bvdrucker@gmail.com> (http://www.bendrucker.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bendrucker/creditcards/issues"
+  },
+  "homepage": "https://github.com/bendrucker/creditcards",
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "mocha": "~1.20.1"
+  }
+}
