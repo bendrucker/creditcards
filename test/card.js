@@ -36,4 +36,20 @@ describe('card', function () {
 
   });
 
+  describe('#luhn', function () {
+
+    it('returns true for a valid number', function () {
+      expect(card.luhn('4242424242424242')).to.be.true;
+    });
+
+    it('returns false for an invalid number', function () {
+      expect(card.luhn('4242424242424241')).to.be.false;
+    });
+
+    it('returns false for a falsy input', function () {
+      expect(card.luhn()).to.be.false;
+    });
+
+  });
+
 });
