@@ -6,5 +6,6 @@ deploy:
   api_key:
     secure: JkgLJrucBBP4OyD20oSXkZ7O3W5Wgm6pdY5v+V30CO0Ms4Bx3k47pLpHmlAHykNjLys+IpBDAqYioKEgnWNPkPqeEmho6wrNVP10V6ZIYT0EhwZPlxYmMsJk6sw5sSuvp0PLIjE42YDK0tcFjG1Bjww6JtewvADp3M1rZWyWx5U=
   on:
+    all_branches: true
     tags: true
     repo: bendrucker/creditcards
