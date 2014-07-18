@@ -37,3 +37,10 @@ exports.parse = function (number) {
   if (typeof number !== 'string') return '';
   return number.replace(/[^\d]/g, '');
 };
+
+exports.type = function (number) {
+  for (var typeName in exports.types) {
+    var type = exports.types[typeName];
+    if (type.pattern.test(number)) return typeName;
+  }
+};

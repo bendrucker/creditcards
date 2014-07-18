@@ -19,4 +19,21 @@ describe('card', function () {
 
   });
 
+  describe('#type', function () {
+
+    it('returns the card name', function () {
+      expect(card.type('4242424242424242')).to.equal('visa');
+      expect(card.type('5555555555554444')).to.equal('masterCard');
+      expect(card.type('378282246310005')).to.equal('americanExpress');
+      expect(card.type('6011111111111117')).to.equal('discover');
+      expect(card.type('30569309025904')).to.equal('dinersClub');
+      expect(card.type('3530111333300000')).to.equal('jcb');
+    });
+
+    it('returns undefined with no match', function () {
+      expect(card.type('123')).to.be.undefined;
+    });
+
+  });
+
 });
