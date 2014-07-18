@@ -53,4 +53,65 @@ describe('expiration', function () {
 
   });
 
+  describe('year', function () {
+
+    var year = expiration.year;
+
+    describe('#parse', function () {
+
+      it('casts values to numbers', function () {
+        expect(year.parse('12')).to.equal(12);
+        expect(year.parse(12)).to.equal(12);
+        expect(year.parse('08')).to.equal(8);
+      });
+
+      it('can pad short dates', function () {
+        expect(year.parse(12, true)).to.equal(2012);
+        expect(year.parse('12', true)).to.equal(2012);
+        expect(year.parse(5, true)).to.equal(2005);
+        expect(year.parse('5', true)).to.equal(2005);
+      });
+
+    });
+
+    describe('#isValid', function () {
+
+      it('is true for positive numbers', function () {
+        expect(year.isValid(2000)).to.be.true;
+        expect(year.isValid(2014)).to.be.true;
+        expect(year.isValid('14')).to.be.true;
+        expect(year.isValid(0, true)).to.be.true;
+      });
+
+      it('is falsy for non numeric values', function () {
+        expect(year.isValid()).to.be.false;
+        expect(year.isValid(null)).to.be.false;
+        expect(year.isValid(false)).to.be.false;
+      });
+
+    });
+
+    describe('#isFuture', function () {
+
+      it('is true for this year', function () {
+        var thisYear = new Date().getYear() + 1900;
+        expect(year.isFuture(thisYear)).to.be.true;
+        expect(year.isFuture(thisYear.toString())).to.be.true;
+        expect(year.isFuture(thisYear.toString().substr(2, 4), true)).to.be.true;
+      });
+
+      it('is true for future years', function () {
+        expect(year.isFuture(2100)).to.be.true;
+        expect(year.isFuture('99', true)).to.be.true
+      });
+
+      it('is false for past years', function () {
+        expect(year.isFuture(2000)).to.be.false;
+        expect(year.isFuture('00', true)).to.be.false;
+      });
+
+    });
+
+  });
+
 });
