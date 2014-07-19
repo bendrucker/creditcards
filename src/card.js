@@ -41,7 +41,7 @@ exports.parse = function (number) {
 exports.type = function (number) {
   for (var typeName in exports.types) {
     var type = exports.types[typeName];
-    if (type.pattern.test(number)) return typeName;
+    if (type.pattern.test(number)) return exports.types[typeName].name;
   }
 };
 

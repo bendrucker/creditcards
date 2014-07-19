@@ -7,7 +7,7 @@ var expiration = exports.expiration = require('./expiration');
 exports.validate = function (cardObj) {
   return {
     card: {
-      type: card.types[card.type(cardObj.number)].name,
+      type: card.type(cardObj.number),
       number: cardObj.number,
       expirationMonth: cardObj.expirationMonth,
       expirationYear: cardObj.expirationYear,
