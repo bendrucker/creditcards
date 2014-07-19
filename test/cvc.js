@@ -19,6 +19,11 @@ describe('cvc', function () {
       expect(cvc.isValid('1234', 'americanExpress')).to.be.true;
     });
 
+    it('can use the proper name for type', function () {
+      expect(cvc.isValid('123', 'Visa')).to.be.true;
+      expect(cvc.isValid('1234', 'American Express')).to.be.true;
+    });
+
     it('is false for a non-string', function () {
       expect(cvc.isValid(123)).to.be.false;
     });
