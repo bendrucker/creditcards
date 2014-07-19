@@ -6,7 +6,7 @@ exports.isPast = function (month, year) {
 
 exports.month = {
   parse: function (month) {
-    return ~~month;
+    return ~~month || void 0;
   },
   isValid: function (month) {
     if (typeof month !== 'number') return false;
@@ -20,7 +20,7 @@ exports.year = {
     if (!pad) return year;
     var base = new Date().getFullYear().toString().substr(0, 2);
     var str = base + (year.toString().length === 2 ? year : '0' + year);
-    return ~~str;
+    return ~~str || void 0;
   },
   isValid: function (year) {
     if (typeof year !== 'number') return false;
