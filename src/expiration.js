@@ -9,8 +9,7 @@ exports.month = {
     return ~~month;
   },
   isValid: function (month) {
-    if (!month) return false;
-    month = exports.month.parse(month);
+    if (typeof month !== 'number') return false;
     return month >= 1 && month <= 12;
   }
 };
