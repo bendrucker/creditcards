@@ -1,9 +1,7 @@
 'use strict';
 
-var internals = {};
-
-exports.isFuture = function (month, year) {
-  return Date.now() <= new Date(year, month);
+exports.isPast = function (month, year) {
+  return Date.now() >= new Date(year, month);
 };
 
 exports.month = {
@@ -17,15 +15,11 @@ exports.month = {
   }
 };
 
-internals.currentYear = function () {
-  return new Date().getYear() + 1900;
-};
-
 exports.year = {
   parse: function (year, pad) {
     year = ~~year;
     if (!pad) return year;
-    var base = internals.currentYear().toString().substr(0, 2);
+    var base = new Date().getFullYear().toString().substr(0, 2);
     var str = base + (year.toString().length === 2 ? year : '0' + year);
     return ~~str;
   },
@@ -33,10 +27,7 @@ exports.year = {
     if (typeof year !== 'number') return false;
     return year > 0;
   },
-  isCurrent: function (year) {
-    return internals.currentYear() === year;
-  },
-  isFuture: function (year) {
-    return internals.currentYear() <= year;
+  isPast: function (year) {
+    return new Date().getFullYear() > year;
   }
 };

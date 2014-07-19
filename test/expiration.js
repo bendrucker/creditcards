@@ -7,19 +7,19 @@ var expiration = require('../src/expiration');
 
 describe('expiration', function () {
 
-  describe('#isFuture', function () {
+  describe('#isPast', function () {
 
-    it('checks whether the date is in the future', function () {
-      expect(expiration.isFuture(
+    it('checks whether the date is in the past', function () {
+      expect(expiration.isPast(
         new Date().getMonth(),
-        new Date().getYear() + 1900
-      ))
-      .to.be.false;
-      expect(expiration.isFuture(
-        new Date().getMonth() + 1,
-        new Date().getYear() + 1900
+        new Date().getFullYear()
       ))
       .to.be.true;
+      expect(expiration.isPast(
+        new Date().getMonth() + 1,
+        new Date().getFullYear()
+      ))
+      .to.be.false;
     });
   });
 
@@ -103,29 +103,19 @@ describe('expiration', function () {
 
     });
 
-    describe('#isCurrent', function () {
+    describe('#isPast', function () {
 
-      it('checks for the current year', function () {
+      it('is false for this year', function () {
         var thisYear = new Date().getYear() + 1900;
-        expect(year.isCurrent(thisYear)).to.be.true;
-        expect(year.isCurrent(2013)).to.be.false;
+        expect(year.isPast(thisYear)).to.be.false;
       });
 
-    });
-
-    describe('#isFuture', function () {
-
-      it('is true for this year', function () {
-        var thisYear = new Date().getYear() + 1900;
-        expect(year.isFuture(thisYear)).to.be.true;
+      it('is false for future years', function () {
+        expect(year.isPast(2100)).to.be.false;
       });
 
-      it('is true for future years', function () {
-        expect(year.isFuture(2100)).to.be.true;
-      });
-
-      it('is false for past years', function () {
-        expect(year.isFuture(2000)).to.be.false;
+      it('is true for past years', function () {
+        expect(year.isPast(2000)).to.be.true;
       });
 
     });

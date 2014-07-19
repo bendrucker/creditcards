@@ -17,6 +17,6 @@ exports.validate = function (cardObj) {
     validExpirationMonth: expiration.month.isValid(cardObj.expirationMonth),
     validExpirationYear: expiration.year.isValid(cardObj.expirationYear),
     validCvc: cvc.isValid(cardObj.cvc),
-    expired: !expiration.isFuture(cardObj.expirationMonth, cardObj.expirationYear)
+    expired: expiration.isPast(cardObj.expirationMonth, cardObj.expirationYear)
   }
 };
