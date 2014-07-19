@@ -87,6 +87,13 @@ Checks whether the provided year (`Number`) is valid (> 0).
 #### `expiration.year.isPast(year)` -> `Boolean`
 Checks whether a given year (`Number`) is in the past.
 
+## Why Another Library?
+There are lots of other useful credit card validation and parsing modules. creditcards specifically takes inspiration from [credit-card](https://www.npmjs.org/package/credit-card), but there are [many others](https://www.npmjs.org/search?q=credit%20card). creditcards was specifically designed for browser use for handling payment forms. That means:
+
+1) Browserified, it's only a few kilobytes, even before minification.
+2) It provides an API for parsing user inputs.
+3) The card type is optional.
+
 ## License
 
 [MIT](LICENSE)
