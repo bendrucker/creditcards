@@ -1,5 +1,7 @@
 'use strict';
 
+var camel = require('camel-case');
+
 exports.types = {
   visa: {
     name: 'Visa',
@@ -59,4 +61,9 @@ exports.luhn = function (number) {
   }
 
   return sum % 10 === 0 && sum > 0;
+};
+
+exports.isValid = function (number, type) {
+  if (!type) return exports.luhn(number);
+  return exports.luhn(number) && exports.types[camel(type)].pattern.test(number);
 };

@@ -52,4 +52,18 @@ describe('card', function () {
 
   });
 
+  describe('#isValid', function () {
+
+    it('runs a luhn check for no type', function () {
+      expect(card.isValid('4242424242424242')).to.be.true;
+    });
+
+    it('can validate a card against a type', function () {
+      expect(card.isValid('4242424242424242', 'Visa')).to.be.true;
+      expect(card.isValid('4242424242424242', 'American Express')).to.be.false;
+      expect(card.isValid('378282246310005', 'americanExpress')).to.be.true;
+    });
+
+  });
+
 });
