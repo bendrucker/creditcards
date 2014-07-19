@@ -16,7 +16,7 @@ Utility methods for formatting and validating credit cards. With a minimal footp
 * Returns:
   * object
     * `card`
-      * `type` (string) - the [type](#cardtypenumber) of the provided card
+      * `type` (string) - the [type](#cardtypenumber---string) of the provided card
       * `number` (string)
       * `expirationMonth` (number)
       * `expirationYear` (number)
@@ -51,7 +51,7 @@ Checks the card number's validity using the [Luhn algorithm](http://en.wikipedia
 ## `cvc`
 
 #### `isValid(cvc [, type])` -> `Boolean`
-Checks whether a card verification code is a valid 3-4 digit numeric string. If a [`type`](#cardtypenumber) is provided, the length will be validated for the card type (4 for American Express, 3 for others).
+Checks whether a card verification code is a valid 3-4 digit numeric string. If a [`type`](#cardtypenumber---string) is provided, the length will be validated for the card type (4 for American Express, 3 for others).
 
 ## `expiration`
 
