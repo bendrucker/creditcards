@@ -48,6 +48,9 @@ Returns the matched card type, or `undefined` if there was no match. Valid card 
 #### `card.luhn(number)` -> `Boolean`
 Checks the card number's validity using the [Luhn algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm).
 
+#### `card.isValid(number [, type])` -> `Boolean`
+Validates the number using `card.luhn`. Also checks that the card matches a given [type](#cardtypenumber---string) if provided. 
+
 ## `cvc`
 
 #### `isValid(cvc [, type])` -> `Boolean`
