@@ -54,8 +54,14 @@ describe('card', function () {
 
   describe('#isValid', function () {
 
-    it('runs a luhn check for no type', function () {
+    it('ensures that some type is matched if none is specified', function () {
       expect(card.isValid('4242424242424242')).to.be.true;
+      expect(card.isValid('5555555555554444')).to.be.true;
+      expect(card.isValid('378282246310005')).to.be.true;
+      expect(card.isValid('6011111111111117')).to.be.true;
+      expect(card.isValid('30569309025904')).to.be.true;
+      expect(card.isValid('3530111333300000')).to.be.true;
+      expect(card.isValid('42')).to.be.false;
     });
 
     it('can validate a card against a type', function () {
