@@ -18,5 +18,5 @@ exports.validate = function (cardObj) {
     validExpirationYear: expiration.year.isValid(cardObj.expirationYear),
     validCvc: cvc.isValid(cardObj.cvc),
     expired: expiration.isPast(cardObj.expirationMonth, cardObj.expirationYear)
-  }
+  };
 };
