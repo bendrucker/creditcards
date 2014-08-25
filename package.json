@@ -1,6 +1,6 @@
 {
   "name": "creditcards",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Utility methods for formatting and validating credit cards",
   "main": "index.js",
   "scripts": {
