@@ -64,6 +64,6 @@ exports.luhn = function (number) {
 };
 
 exports.isValid = function (number, type) {
-  if (!type) return exports.luhn(number);
+  if (!type) return exports.luhn(number) && !!exports.type(number);
   return exports.luhn(number) && exports.types[camel(type)].pattern.test(number);
 };
