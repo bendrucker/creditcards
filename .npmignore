@@ -1,4 +1,3 @@
 test/
-.travis.yml
-.jshintrc
-.npmignore
+coverage/
+**/.*
