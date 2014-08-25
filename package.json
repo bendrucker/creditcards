@@ -4,7 +4,7 @@
   "description": "Utility methods for formatting and validating credit cards",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "istanbul cover node_modules/.bin/_mocha -- ./test"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,11 @@
   },
   "homepage": "https://github.com/bendrucker/creditcards",
   "devDependencies": {
-    "chai": "~1.9.1",
-    "mocha": "~1.20.1"
+    "chai": "1",
+    "istanbul": "0",
+    "mocha": "1"
   },
   "dependencies": {
-    "camel-case": "~0.1.0"
+    "camel-case": "0.1"
   }
 }

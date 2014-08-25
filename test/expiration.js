@@ -29,10 +29,11 @@ describe('expiration', function () {
 
     describe('#parse', function () {
 
-      it('casts values to numbers', function () {
+      it('casts valid values to numbers', function () {
         expect(month.parse('12')).to.equal(12);
         expect(month.parse(12)).to.equal(12);
         expect(month.parse('08')).to.equal(8);
+        expect(month.parse(0)).to.be.undefined;
       });
 
     });
@@ -83,6 +84,8 @@ describe('expiration', function () {
         expect(year.parse('12')).to.equal(12);
         expect(year.parse(12)).to.equal(12);
         expect(year.parse('08')).to.equal(8);
+        expect(year.parse(0)).to.be.undefined;
+        expect(year.parse(0, true)).to.equal(2000);
       });
 
       it('can pad short dates', function () {

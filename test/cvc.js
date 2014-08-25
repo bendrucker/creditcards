@@ -10,6 +10,8 @@ describe('cvc', function () {
     it('is true for a 3-4 char numeric string with no type', function () {
       expect(cvc.isValid('123')).to.be.true;
       expect(cvc.isValid('1234')).to.be.true;
+      expect(cvc.isValid('12')).to.be.false;
+      expect(cvc.isValid('12345')).to.be.false;
     });
 
     it('matches the cvc length against a provided type', function () {

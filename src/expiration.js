@@ -17,10 +17,10 @@ exports.month = {
 exports.year = {
   parse: function (year, pad) {
     year = ~~year;
-    if (!pad) return year;
+    if (!pad) return year || void 0;
     var base = new Date().getFullYear().toString().substr(0, 2);
     var str = base + (year.toString().length === 2 ? year : '0' + year);
-    return ~~str || void 0;
+    return ~~str;
   },
   isValid: function (year) {
     if (typeof year !== 'number') return false;
