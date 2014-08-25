@@ -1,5 +1,8 @@
 language: node_js
 node_js: '0.10'
+after_script:
+- npm install -g codeclimate-test-reporter
+- codeclimate < ./coverage/lcov.info
 deploy:
   provider: npm
   email: bvdrucker@gmail.com
@@ -9,3 +12,6 @@ deploy:
     all_branches: true
     tags: true
     repo: bendrucker/creditcards
+env:
+  global:
+    secure: Zfy+k2QMDYruNB37iJvzw7iq4/UNQVa4FUZGO1eUrA4zx0V3Oi7M82Fsr5sUj9rWhOqQhnv5sA6HwCDZFAaCHAMHEkaY/wpAuC9Bjc3u1Bb1jGBRX3sABw99Ry6Y1Ich5tkkMjA29TwKlEPShrmem3mCggaR4E5B9kU/BNCAnaY=
