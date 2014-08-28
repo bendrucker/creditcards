@@ -66,7 +66,12 @@ Checks whether a given month and year pair (both `Number`) are in the past.
 ### `expiration.month`
 
 #### `expiration.month.parse(month)` -> `Number`
-Casts the provided `month` value to a `Number`. All of the following will be `5` after parsing: `5`, `'05'`, `'5'`. Returns `undefined` for non-numeric values.
+Casts the provided `month` value to a `Number`. All of the following will be `5` after parsing: 
+* `5`
+* `'05'`
+* `'5'`
+
+Returns `undefined` for non-numeric values.
 
 ---
 
@@ -78,7 +83,13 @@ Checks whether the provided month (`Number`) is valid (between 1 and 12).
 ### `expiration.year`
 
 #### `expiration.year.parse(year [, pad])` -> `Number`
-Casts the provided year value to  a `Number`. If `pad` is `true`, `year` is assumed to be a two digit number or numeric string. All of the following are equivalent: `expiration.year.parse(2014)`, `expiration.year.parse('2014')`, `expiration.year.parse('14', true)`, `expiration.year.parse(14, true)`. Returns `undefined` for non-numeric values.
+Casts the provided year value to  a `Number`. If `pad` is `true`, `year` is assumed to be a two digit number or numeric string. All of the following are equivalent: 
+* `expiration.year.parse(2014)`
+* `expiration.year.parse('2014')`
+* `expiration.year.parse('14', true)`
+* `expiration.year.parse(14, true)`
+
+Returns `undefined` for non-numeric values.
 
 ---
 
