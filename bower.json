@@ -1,0 +1,30 @@
+{
+  "name": "creditcards",
+  "version": "1.0.0",
+  "homepage": "https://github.com/bendrucker/creditcards",
+  "authors": [
+    "Ben Drucker <bvdrucker@gmail.com>"
+  ],
+  "description": "Utility methods for formatting and validating credit cards",
+  "main": "./release/creditcards.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "credit",
+    "card",
+    "validation",
+    "formatting",
+    "payments"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
