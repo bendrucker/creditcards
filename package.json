@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/bendrucker/creditcards",
   "devDependencies": {
+    "browserify": "6",
     "browserify-bower-release": "^2.0.0",
     "chai": "1",
     "istanbul": "0",
