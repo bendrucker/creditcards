@@ -3,7 +3,15 @@ creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?br
 
 Utility methods for formatting and validating credit cards. With a minimal footprint and a flexible API, it's suitable for both Node and the browser.
 
-# API
+## Install
+```bash
+# npm
+$ npm install creditcards
+# bower
+$ npm install bower
+``` 
+
+## API
 
 #### `validate(card)`
 
