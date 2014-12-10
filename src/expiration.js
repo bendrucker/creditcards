@@ -26,6 +26,10 @@ exports.year = {
     if (!pad) return year || void 0;
     return ~~(base + twoDigit(year));
   },
+  format: function (year, strip) {
+    year = year.toString();
+    return strip ? year.substr(2, 4) : year;
+  },
   isValid: function (year) {
     if (typeof year !== 'number') return false;
     return year > 0;

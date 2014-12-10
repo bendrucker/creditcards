@@ -97,6 +97,20 @@ describe('expiration', function () {
 
     });
 
+    describe('#format', function () {
+
+      it('casts numbers to strings', function () {
+        expect(year.format('2012')).to.equal('2012');
+        expect(year.format(2012)).to.equal('2012');
+      });
+
+      it('can strip long dates', function () {
+        expect(year.format(2014, true)).to.equal('14');
+        expect(year.format(2000, true)).to.equal('00');
+      });
+
+    });
+
     describe('#isValid', function () {
 
       it('is true for positive numbers', function () {
