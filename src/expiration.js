@@ -14,13 +14,17 @@ exports.month = {
   }
 };
 
+var base = new Date().getFullYear().toString().substr(0, 2);
+
+function twoDigit (number) {
+  return number > 10 ? number : '0' + number;
+}
+
 exports.year = {
   parse: function (year, pad) {
     year = ~~year;
     if (!pad) return year || void 0;
-    var base = new Date().getFullYear().toString().substr(0, 2);
-    var str = base + (year.toString().length === 2 ? year : '0' + year);
-    return ~~str;
+    return ~~(base + twoDigit(year));
   },
   isValid: function (year) {
     if (typeof year !== 'number') return false;
