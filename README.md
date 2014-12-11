@@ -101,6 +101,13 @@ Returns `undefined` for non-numeric values.
 
 ---
 
+#### `expiration.year.format(year [, strip])` -> `Number`
+Casts the provided year (`Number`) to  a `String`. If `strip` is `true`, `year` is assumed to be a four digit number and will be converted to a two digit number. 
+* `expiration.year.format(2014) === '2014'`
+* `expiration.year.format(2014, true) === '14'`
+
+---
+
 #### `expiration.year.isValid(year)` -> `Boolean`
 Checks whether the provided year (`Number`) is valid (> 0).
 
