@@ -117,11 +117,16 @@ Checks whether the provided year (`Number`) is valid (> 0).
 Checks whether a given year (`Number`) is in the past.
 
 ## Why Another Library?
-There are lots of other useful credit card validation and parsing modules. creditcards specifically takes inspiration from [credit-card](https://www.npmjs.org/package/credit-card), but there are [many others](https://www.npmjs.org/search?q=credit%20card). creditcards was specifically designed for browser use for handling payment forms. That means:
+There are lots of other useful credit card validation and parsing modules. creditcards specifically takes inspiration from [credit-card](https://www.npmjs.org/package/credit-card), but there are [many others](https://www.npmjs.org/search?q=credit%20card), including the popular [jQuery.payment](https://github.com/stripe/jquery.payment). creditcards was specifically designed for browser use for handling payment forms. That means:
 
 1. Browserified, it's only a few kilobytes, even before minification.
 2. It provides an API for parsing user inputs.
-3. The card type is optional.
+3. It has no DOM-related code. You can use it in Node and in the browser you get full control over how your card inputs are handled.
+4. The card type is optional.
+
+## Clients
+
+* [angular-credit-cards](https://github.com/bendrucker/angular-credit-cards): A set of Angular directives for building credit card forms powered by creditcards
 
 ## License
 
