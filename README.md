@@ -8,7 +8,7 @@ Utility methods for formatting and validating credit cards. With a minimal footp
 # npm
 $ npm install creditcards
 # bower
-$ npm install bower
+$ bower install creditcards
 ``` 
 
 ## API
