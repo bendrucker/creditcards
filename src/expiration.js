@@ -17,7 +17,7 @@ exports.month = {
 var base = new Date().getFullYear().toString().substr(0, 2);
 
 function twoDigit (number) {
-  return number > 10 ? number : '0' + number;
+  return number >= 10 ? number : '0' + number;
 }
 
 exports.year = {

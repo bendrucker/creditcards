@@ -93,6 +93,7 @@ describe('expiration', function () {
         expect(year.parse('12', true)).to.equal(2012);
         expect(year.parse(5, true)).to.equal(2005);
         expect(year.parse('5', true)).to.equal(2005);
+        expect(year.parse(10, true)).to.equal(2010);
       });
 
     });
