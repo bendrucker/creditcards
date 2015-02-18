@@ -28,6 +28,7 @@
     "mocha": "1"
   },
   "dependencies": {
-    "camel-case": "0.1"
+    "camel-case": "0.1",
+    "creditcards-types": "~1.0.2"
   }
 }

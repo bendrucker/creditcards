@@ -70,6 +70,12 @@ describe('card', function () {
       expect(card.isValid('378282246310005', 'americanExpress')).to.be.true;
     });
 
+    it('validates UnionPay by skipping luhn', function () {
+      var number = 6240008631401142;
+      expect(card.luhn(number)).to.be.false
+      expect(card.isValid('6240008631401142', 'UnionPay')).to.be.true;
+    });
+
   });
 
 });
