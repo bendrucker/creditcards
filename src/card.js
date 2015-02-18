@@ -9,10 +9,10 @@ exports.parse = function (number) {
   return number.replace(/[^\d]/g, '');
 };
 
-exports.type = function (number) {
+exports.type = function (number, eager) {
   for (var typeName in exports.types) {
     var type = exports.types[typeName];
-    if (type.test(number)) return exports.types[typeName].name;
+    if (type.test(number, eager)) return exports.types[typeName].name;
   }
 };
 

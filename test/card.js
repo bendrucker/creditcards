@@ -30,6 +30,12 @@ describe('card', function () {
       expect(card.type('3530111333300000')).to.equal('JCB');
     });
 
+    it('can run eager type checking', function () {
+      expect(card.type('42', true)).to.equal('Visa');
+      expect(card.type('5', true)).to.equal('MasterCard');
+      expect(card.type('37', true)).to.equal('American Express');
+    });
+
     it('returns undefined with no match', function () {
       expect(card.type('123')).to.be.undefined;
     });

@@ -42,14 +42,13 @@ Removes all non-numeric characters from a card number, including punctuation and
 
 ---
 
-#### `card.type(number)` -> `String`
-Returns the matched card type, or `undefined` if there was no match. Valid card types are:
-* Visa
-* MasterCard
-* American Express
-* Diners Club
-* Discover
-* JCB
+#### `card.type(number [, eager])` -> `String`
+
+Returns the matched card type, or `undefined` if there was no match. If `eager` is `true` (it defaults to `false`), `card.type` will match against a partial number. `'42'`, for example, will match `'Visa'` with `eager` set to `true`.
+
+`number` must be a string and may not have spaces or punctuation. Use [`card.parse`](#cardparsenumber---string) to sanitize user input before passing a `number` to `card.type`. 
+
+For a full list of supported card types, see [`creditcards-types`](https://github.com/bendrucker/creditcards-types#card-types).
 
 ---
 
