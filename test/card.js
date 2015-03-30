@@ -29,7 +29,7 @@ describe('card', function () {
 
     it('can run eager type checking', function () {
       expect(card.type('42', true)).to.equal('Visa');
-      expect(card.type('5', true)).to.equal('MasterCard');
+      expect(card.type('55', true)).to.equal('MasterCard');
       expect(card.type('37', true)).to.equal('American Express');
     });
 
