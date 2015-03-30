@@ -25,9 +25,6 @@ describe('card', function () {
       expect(card.type('4242424242424242')).to.equal('Visa');
       expect(card.type('5555555555554444')).to.equal('MasterCard');
       expect(card.type('378282246310005')).to.equal('American Express');
-      expect(card.type('6011111111111117')).to.equal('Discover');
-      expect(card.type('30569309025904')).to.equal('Diners Club');
-      expect(card.type('3530111333300000')).to.equal('JCB');
     });
 
     it('can run eager type checking', function () {
@@ -64,9 +61,6 @@ describe('card', function () {
       expect(card.isValid('4242424242424242')).to.equal(true);
       expect(card.isValid('5555555555554444')).to.equal(true);
       expect(card.isValid('378282246310005')).to.equal(true);
-      expect(card.isValid('6011111111111117')).to.equal(true);
-      expect(card.isValid('30569309025904')).to.equal(true);
-      expect(card.isValid('3530111333300000')).to.equal(true);
       expect(card.isValid('42')).to.equal(false);
     });
 
