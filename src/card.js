@@ -1,6 +1,7 @@
 'use strict';
 
 var camel = require('camel-case');
+var luhn = require('fast-luhn');
 
 exports.types = require('creditcards-types').types;
 
@@ -16,24 +17,11 @@ exports.type = function (number, eager) {
   }
 };
 
-exports.luhn = function (number) {
-  if (!number) return false;
-  // https://gist.github.com/ShirtlessKirk/2134376
-  var len = number.length;
-  var mul = 0;
-  var prodArr = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]];
-  var sum = 0;
-
-  while (len--) {
-    sum += prodArr[mul][parseInt(number.charAt(len), 10)];
-    mul ^= 1;
-  }
-
-  return sum % 10 === 0 && sum > 0;
-};
+exports.luhn = luhn;
 
 exports.isValid = function (number, type) {
-  if (!type) return exports.luhn(number) && !!exports.type(number);
+  if (!type) type = exports.type(number);
   type = exports.types[camel(type)];
-  return (!type.luhn || exports.luhn(number)) && type.test(number);
+  if (!type) return false;
+  return (!type.luhn || luhn(number)) && type.test(number);
 };

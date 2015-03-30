@@ -71,9 +71,9 @@ describe('card', function () {
     });
 
     it('validates UnionPay by skipping luhn', function () {
-      var number = 6240008631401142;
+      var number = '6240008631401142';
       expect(card.luhn(number)).to.equal(false);
-      expect(card.isValid('6240008631401142', 'UnionPay')).to.equal(true);
+      expect(card.isValid(number, 'UnionPay')).to.equal(true);
     });
 
   });
