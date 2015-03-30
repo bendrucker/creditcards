@@ -37,7 +37,7 @@ describe('card', function () {
     });
 
     it('returns undefined with no match', function () {
-      expect(card.type('123')).to.be.undefined;
+      expect(card.type('123')).to.equal(undefined);
     });
 
   });
@@ -45,15 +45,15 @@ describe('card', function () {
   describe('#luhn', function () {
 
     it('returns true for a valid number', function () {
-      expect(card.luhn('4242424242424242')).to.be.true;
+      expect(card.luhn('4242424242424242')).to.equal(true);
     });
 
     it('returns false for an invalid number', function () {
-      expect(card.luhn('4242424242424241')).to.be.false;
+      expect(card.luhn('4242424242424241')).to.equal(false);
     });
 
     it('returns false for a falsy input', function () {
-      expect(card.luhn()).to.be.false;
+      expect(card.luhn()).to.equal(false);
     });
 
   });
@@ -61,25 +61,25 @@ describe('card', function () {
   describe('#isValid', function () {
 
     it('ensures that some type is matched if none is specified', function () {
-      expect(card.isValid('4242424242424242')).to.be.true;
-      expect(card.isValid('5555555555554444')).to.be.true;
-      expect(card.isValid('378282246310005')).to.be.true;
-      expect(card.isValid('6011111111111117')).to.be.true;
-      expect(card.isValid('30569309025904')).to.be.true;
-      expect(card.isValid('3530111333300000')).to.be.true;
-      expect(card.isValid('42')).to.be.false;
+      expect(card.isValid('4242424242424242')).to.equal(true);
+      expect(card.isValid('5555555555554444')).to.equal(true);
+      expect(card.isValid('378282246310005')).to.equal(true);
+      expect(card.isValid('6011111111111117')).to.equal(true);
+      expect(card.isValid('30569309025904')).to.equal(true);
+      expect(card.isValid('3530111333300000')).to.equal(true);
+      expect(card.isValid('42')).to.equal(false);
     });
 
     it('can validate a card against a type', function () {
-      expect(card.isValid('4242424242424242', 'Visa')).to.be.true;
-      expect(card.isValid('4242424242424242', 'American Express')).to.be.false;
-      expect(card.isValid('378282246310005', 'americanExpress')).to.be.true;
+      expect(card.isValid('4242424242424242', 'Visa')).to.equal(true);
+      expect(card.isValid('4242424242424242', 'American Express')).to.equal(false);
+      expect(card.isValid('378282246310005', 'americanExpress')).to.equal(true);
     });
 
     it('validates UnionPay by skipping luhn', function () {
       var number = 6240008631401142;
-      expect(card.luhn(number)).to.be.false
-      expect(card.isValid('6240008631401142', 'UnionPay')).to.be.true;
+      expect(card.luhn(number)).to.equal(false);
+      expect(card.isValid('6240008631401142', 'UnionPay')).to.equal(true);
     });
 
   });
