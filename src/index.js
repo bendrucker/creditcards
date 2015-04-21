@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-var card = exports.card = require('./card');
-var cvc = exports.cvc = require('./cvc');
-var expiration = exports.expiration = require('./expiration');
+var card = exports.card = require('./card')
+var cvc = exports.cvc = require('./cvc')
+var expiration = exports.expiration = require('./expiration')
 
 exports.validate = function (cardObj) {
   return {
@@ -18,5 +18,5 @@ exports.validate = function (cardObj) {
     validExpirationYear: expiration.year.isValid(cardObj.expirationYear),
     validCvc: cvc.isValid(cardObj.cvc),
     expired: expiration.isPast(cardObj.expirationMonth, cardObj.expirationYear)
-  };
-};
+  }
+}
