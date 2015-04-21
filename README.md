@@ -42,6 +42,15 @@ Removes all non-numeric characters from a card number, including punctuation and
 
 ---
 
+#### `card.format(number [, separator])` -> `String`
+
+Formats a card number depending on the card type using the `separator`, defaulting to a space. 
+
+* `card.format('4242424242424242') === '4242 4242 4242 4242'` (Visa)
+* `card.format('378282246310005') === '3782 822463 10005'` (American Express) 
+
+---
+
 #### `card.type(number [, eager])` -> `String`
 
 Returns the matched card type, or `undefined` if there was no match. If `eager` is `true` (it defaults to `false`), `card.type` will match against a partial number. `'42'`, for example, will match `'Visa'` with `eager` set to `true`.

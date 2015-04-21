@@ -19,6 +19,23 @@ describe('card', function () {
 
   });
 
+  describe('#format', function () {
+
+    it('passes through if no card is matched', function () {
+      expect(card.format('5')).to.equal('5');
+    });
+
+    it('formats cards by type', function () {
+      expect(card.format('4242424242424242')).to.equal('4242 4242 4242 4242');
+      expect(card.format('378282246310005')).to.equal('3782 822463 10005');
+    });
+
+    it('can use a custom separator', function () {
+      expect(card.format('4242424242424242', '-')).to.equal('4242-4242-4242-4242');
+    });
+
+  });
+
   describe('#type', function () {
 
     it('returns the card name', function () {
