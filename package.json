@@ -32,5 +32,10 @@
     "camel-case": "0.1",
     "creditcards-types": "~1.2.0",
     "fast-luhn": "~1.0.1"
+  },
+  "standard": {
+    "ignore": [
+      "release/"
+    ]
   }
 }
