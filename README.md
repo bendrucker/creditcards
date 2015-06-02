@@ -13,28 +13,6 @@ $ bower install creditcards
 
 ## API
 
-#### `validate(card)`
-
-* Arguments:
-  * `card` (object)
-    * `number` (string)
-    * `expirationMonth` (number)
-    * `expirationYear` (number)
-    * `cvc` (string)
-* Returns:
-  * object
-    * `card`
-      * `type` (string) - the [type](#cardtypenumber---string) of the provided card
-      * `number` (string)
-      * `expirationMonth` (number)
-      * `expirationYear` (number)
-      * `cvc` (string)
-    * `validCardNumber` (boolean)
-    * `validExpirationMonth` (boolean)
-    * `validExpirationYear` (boolean)
-    * `validCvc` (boolean)
-    * `expired` (boolean) - whether the expiration date has passed
-
 ## `card`
 
 #### `card.parse(number)` -> `String`
