@@ -10,7 +10,7 @@ exports.isPast = function (month, year) {
 
 exports.month = {
   parse: function parseMonth (month) {
-    return parseIntStrict(month) || undefined
+    return parseIntStrict(month)
   },
   isValid: isValidMonth
 }

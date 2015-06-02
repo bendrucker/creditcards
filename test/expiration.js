@@ -16,7 +16,6 @@ test('expiration', function (t) {
   t.test('month', function (t) {
     var month = expiration.month
     t.equal(month.parse('12'), 12)
-    t.equal(month.parse(0), undefined)
     t.end()
   })
 
