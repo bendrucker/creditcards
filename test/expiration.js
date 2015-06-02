@@ -42,7 +42,7 @@ describe('expiration', function () {
         expect(year.parse('12')).to.equal(12)
         expect(year.parse(12)).to.equal(12)
         expect(year.parse('08')).to.equal(8)
-        expect(year.parse(0)).to.equal(undefined)
+        expect(year.parse(0)).to.equal(0)
         expect(year.parse(0, true)).to.equal(2000)
       })
 
