@@ -1,9 +1,11 @@
 'use strict'
 
-var types = require('creditcards-types').types
+var ccTypes = require('creditcards-types')
 var camel = require('camel-case')
+var extend = require('xtend')
 
-exports.types = types
-exports.get = function getTypeByName (name) {
-  return types[camel(name)]
-}
+module.exports = extend(ccTypes, {
+  get: function getTypeByName (name) {
+    return ccTypes.types[camel(name)]
+  }
+})

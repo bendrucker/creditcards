@@ -34,9 +34,7 @@ exports.isValid = function isCardValid (number, type) {
 }
 
 function getType (number, eager) {
-  var cardTypes = types.types
-  for (var typeName in cardTypes) {
-    var type = cardTypes[typeName]
-    if (type.test(number, eager)) return cardTypes[typeName]
-  }
+  return types.find(function (type) {
+    return type.test(number, eager)
+  })
 }
