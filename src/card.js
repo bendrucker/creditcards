@@ -1,8 +1,7 @@
 'use strict'
 
-var camel = require('camel-case')
 var luhn = require('fast-luhn')
-var types = require('creditcards-types').types
+var types = require('./types')
 
 exports.types = types
 
@@ -26,7 +25,7 @@ exports.luhn = luhn
 
 exports.isValid = function isCardValid (number, type) {
   if (type) {
-    type = types[camel(type)]
+    type = types.get(type)
   } else {
     type = getType(number)
   }
@@ -35,8 +34,9 @@ exports.isValid = function isCardValid (number, type) {
 }
 
 function getType (number, eager) {
-  for (var typeName in types) {
-    var type = types[typeName]
-    if (type.test(number, eager)) return types[typeName]
+  var cardTypes = types.types
+  for (var typeName in cardTypes) {
+    var type = cardTypes[typeName]
+    if (type.test(number, eager)) return cardTypes[typeName]
   }
 }
