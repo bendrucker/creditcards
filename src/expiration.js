@@ -5,10 +5,10 @@ exports.isPast = function (month, year) {
 }
 
 exports.month = {
-  parse: function (month) {
-    return ~~month || void 0
+  parse: function parseExpMonth (month) {
+    return ~~month || undefined
   },
-  isValid: function (month) {
+  isValid: function isExpMonthValid (month) {
     if (typeof month !== 'number') return false
     return month >= 1 && month <= 12
   }
@@ -21,20 +21,20 @@ function twoDigit (number) {
 }
 
 exports.year = {
-  parse: function (year, pad) {
+  parse: function parseExpYear (year, pad) {
     year = ~~year
     if (!pad) return year || void 0
     return ~~(base + twoDigit(year))
   },
-  format: function (year, strip) {
+  format: function formatExpYear (year, strip) {
     year = year.toString()
     return strip ? year.substr(2, 4) : year
   },
-  isValid: function (year) {
+  isValid: function isExpYearValid (year) {
     if (typeof year !== 'number') return false
     return year > 0
   },
-  isPast: function (year) {
+  isPast: function isExpYearPast (year) {
     return new Date().getFullYear() > year
   }
 }
