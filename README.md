@@ -1,118 +1,212 @@
 creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards)
 ============
 
-Utility methods for formatting and validating credit cards. With a minimal footprint and a flexible API, it's suitable for both Node and the browser.
+> Parse, format, and validate credit card data.
 
 ## Installing
 
 ```sh
-# npm
-$ npm install creditcards
+npm install --save creditcards
 ``` 
 
 ## API
 
-## `card`
+creditcards exports:
 
-#### `card.parse(number)` -> `String`
-Removes all non-numeric characters from a card number, including punctuation and spacing. If a non-string is provided, it returns an empty string.
+* `card`
+* `cvc`
+* `expiration`
+
+
+### `card`
+
+#### `card.parse(number)` -> `string`
+
+Remove all non-numeric characters from a card number, including punctuation and spacing. 
+
+##### number
+
+*Required*  
+Type: `string`
 
 ---
 
-#### `card.format(number [, separator])` -> `String`
+#### `card.format(number, [separator])` -> `string`
 
-Formats a card number depending on the card type using the `separator`, defaulting to a space. 
+Formats a card number as printed on the physical card
 
-* `card.format('4242424242424242') === '4242 4242 4242 4242'` (Visa)
-* `card.format('378282246310005') === '3782 822463 10005'` (American Express) 
+##### number
+
+*Required*  
+Type: `string`
+
+##### separator
+
+Type: `string`
+Default: `' '` (space)
+
+```js
+card.format('4242424242424242') === '4242 4242 4242 4242' // Visa
+card.format('378282246310005') === '3782 822463 10005' // American Express
+```
 
 ---
 
-#### `card.type(number [, eager])` -> `String`
+#### `card.type(number, [eager])` -> `string`
 
-Returns the matched card type, or `undefined` if there was no match. If `eager` is `true` (it defaults to `false`), `card.type` will match against a partial number. `'42'`, for example, will match `'Visa'` with `eager` set to `true`.
+Returns the matched card type, or `undefined` if there was no match. For a full list of supported card types, see [`creditcards-types`](https://github.com/bendrucker/creditcards-types#card-types).
 
-`number` must be a string and may not have spaces or punctuation. Use [`card.parse`](#cardparsenumber---string) to sanitize user input before passing a `number` to `card.type`. 
+##### number
 
-For a full list of supported card types, see [`creditcards-types`](https://github.com/bendrucker/creditcards-types#card-types).
+*Required*  
+Type: `string`
+
+The card number. Punctuation is not allowed. Sanitize input through `card.parse` first if needed.
+
+##### eager
+
+Type: `boolean`  
+Default: `false`
+
+When `true`, the card type will be eagerly matched using a more permissive pattern that can match partial card numbers.
 
 ---
 
 #### `card.luhn(number)` -> `Boolean`
+
 Checks the card number's validity using the [Luhn algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm).
 
-#### `card.isValid(number [, type])` -> `Boolean`
-Validates the number using `card.luhn` and checks that it matches any [`type`](#cardtypenumber---string) (or a specific `type` if provided). 
+##### number
 
-## `cvc`
+*Required*  
+Type: `string`
 
-#### `isValid(cvc [, type])` -> `Boolean`
-Checks whether a card verification code is a valid 3-4 digit numeric string. If a [`type`](#cardtypenumber---string) is provided, the length will be validated for the card type (4 for American Express, 3 for others).
+#### `card.isValid(number, [type])` -> `boolean`
 
-## `expiration`
+##### number
 
-#### `isPast(month, year)` -> `Boolean`
-Checks whether a given month and year pair (both `Number`) are in the past.
+*Required*  
+Type: `string`
+
+##### type
+
+Type: `string`  
+Default: `undefined`
+
+Detect if a card is a valid card of the specified type. If no type is provided, the card will be valid if any type is matched.
+
+### `cvc`
+
+#### `cvc.isValid(cvc, [type])` -> `boolean`
+
+##### cvc
+
+*Required*  
+Type: `string`
+
+##### type
+
+Type: `string`  
+Default: `undefined`
+
+Detect if a CVC is valid card for the specified type. 
+
+### `expiration`
+
+#### `isPast(month, year)` -> `boolean`
+
+##### month
+
+*Required*  
+Type: `number`
+
+##### year
+
+*Required*  
+Type: `number`
 
 ---
 
-### `expiration.month`
+#### `expiration.month.parse(month)` -> `number`
 
-#### `expiration.month.parse(month)` -> `Number`
-Casts the provided `month` value to a `Number`. All of the following will be `5` after parsing: 
+Casts the provide value a number. All of the following will be `5` after parsing: 
 * `5`
 * `'05'`
 * `'5'`
 
-Returns `undefined` for non-numeric values.
+##### month
+
+*Required*  
+Type: `string` / `number`
 
 ---
 
 #### `expiration.month.isValid(month)` -> `Boolean`
-Checks whether the provided month (`Number`) is valid (between 1 and 12).
+
+##### month
+
+*Required*  
+Type: `number`
 
 ---
 
-### `expiration.year`
+#### `expiration.year.parse(year, [expand])` -> `number`
 
-#### `expiration.year.parse(year [, pad])` -> `Number`
-Casts the provided year value to  a `Number`. If `pad` is `true`, `year` is assumed to be a two digit number or numeric string. All of the following are equivalent: 
+All of the following are equivalent: 
 * `expiration.year.parse(2014)`
 * `expiration.year.parse('2014')`
 * `expiration.year.parse('14', true)`
 * `expiration.year.parse(14, true)`
 
-Returns `undefined` for non-numeric values.
+##### year
+
+*Required*  
+Type: `string` / `number`
+
+##### expand
+
+Type: `boolean`  
+Default: `false`
+
+If `true`, the year is assumed to be a 1 or 2 digit number and is expanded to its full value.
 
 ---
 
-#### `expiration.year.format(year [, strip])` -> `Number`
-Casts the provided year (`Number`) to  a `String`. If `strip` is `true`, `year` is assumed to be a four digit number and will be converted to a two digit number. 
+#### `expiration.year.format(year, [strip])` -> `string`
+
+##### year
+
+*Required*  
+Type: `number`
+
+##### strip
+
+Type: `boolean`  
+Default: `false`
+
+If `true`, year is assumed to be a four digit number and will be converted to a two digit number. 
+
 * `expiration.year.format(2014) === '2014'`
 * `expiration.year.format(2014, true) === '14'`
 
 ---
 
 #### `expiration.year.isValid(year)` -> `Boolean`
-Checks whether the provided year (`Number`) is valid (> 0).
+
+##### year
+
+*Required*  
+Type: `number`
 
 ---
 
-#### `expiration.year.isPast(year)` -> `Boolean`
-Checks whether a given year (`Number`) is in the past.
+#### `expiration.year.isPast(year)` -> `boolean`
 
-## Why Another Library?
-There are lots of other useful credit card validation and parsing modules. creditcards specifically takes inspiration from [credit-card](https://www.npmjs.org/package/credit-card), but there are [many others](https://www.npmjs.org/search?q=credit%20card), including the popular [jQuery.payment](https://github.com/stripe/jquery.payment). creditcards was specifically designed for browser use for handling payment forms. That means:
+##### year
 
-1. Browserified, it's only a few kilobytes, even before minification.
-2. It provides an API for parsing user inputs.
-3. It has no DOM-related code. You can use it in Node and in the browser you get full control over how your card inputs are handled.
-4. The card type is optional.
-
-## Clients
-
-* [angular-credit-cards](https://github.com/bendrucker/angular-credit-cards): A set of Angular directives for building credit card forms powered by creditcards
+*Required*  
+Type: `number`
 
 ## License
 
-[MIT](LICENSE)
+MIT © [Ben Drucker](http://bendrucker.me)
