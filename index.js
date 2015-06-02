@@ -1,8 +1,8 @@
 'use strict'
 
-var card = exports.card = require('./card')
-var cvc = exports.cvc = require('./cvc')
-var expiration = exports.expiration = require('./expiration')
+var card = exports.card = require('./src/card')
+var cvc = exports.cvc = require('./src/cvc')
+var expiration = exports.expiration = require('./src/expiration')
 
 exports.validate = function (cardObj) {
   return {

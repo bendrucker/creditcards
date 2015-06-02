@@ -2,7 +2,7 @@
   "name": "creditcards",
   "version": "1.5.0",
   "description": "Utility methods for formatting and validating credit cards",
-  "main": "./src",
+  "main": "index.js",
   "scripts": {
     "test": "standard && istanbul cover node_modules/.bin/_mocha -- ./test"
   },
