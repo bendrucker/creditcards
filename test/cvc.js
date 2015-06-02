@@ -1,35 +1,20 @@
 'use strict'
 
-/*global describe,it*/
+var test = require('tape')
+var cvc = require('../').cvc
 
-var cvc = require('../src/cvc')
-var expect = require('chai').expect
+test('cvc', function (t) {
+  t.ok(cvc.isValid('123'))
+  t.ok(cvc.isValid('1234'))
+  t.notOk(cvc.isValid('12'))
+  t.notOk(cvc.isValid('12345'))
 
-describe('cvc', function () {
-  describe('#isValid', function () {
-    it('is true for a 3-4 char numeric string with no type', function () {
-      expect(cvc.isValid('123')).to.equal(true)
-      expect(cvc.isValid('1234')).to.equal(true)
-      expect(cvc.isValid('12')).to.equal(false)
-      expect(cvc.isValid('12345')).to.equal(false)
-    })
+  t.ok(cvc.isValid('123', 'visa'))
+  t.notOk(cvc.isValid('1234', 'visa'))
+  t.notOk(cvc.isValid('123', 'American Express'))
+  t.ok(cvc.isValid('1234', 'americanExpress'))
 
-    it('matches the cvc length against a provided type', function () {
-      expect(cvc.isValid('123', 'visa')).to.equal(true)
-      expect(cvc.isValid('1234', 'visa')).to.equal(false)
-      expect(cvc.isValid('123', 'americanExpress')).to.equal(false)
-      expect(cvc.isValid('1234', 'americanExpress')).to.equal(true)
-    })
+  t.notOk(cvc.isValid(123))
 
-    it('can use the proper name for type', function () {
-      expect(cvc.isValid('123', 'Visa')).to.equal(true)
-      expect(cvc.isValid('1234', 'American Express')).to.equal(true)
-    })
-
-    it('is false for a non-string', function () {
-      expect(cvc.isValid(123)).to.equal(false)
-    })
-
-  })
-
+  t.end()
 })

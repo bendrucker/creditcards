@@ -1,94 +1,54 @@
 'use strict'
 
-/*global describe,it*/
+var test = require('tape')
+var card = require('../').card
 
-var card = require('../src/card')
-var expect = require('chai').expect
-
-describe('card', function () {
-  describe('#parse', function () {
-    it('parses a card number', function () {
-      expect(card.parse('4242-4242-4242-4242')).to.equal('4242424242424242')
-      expect(card.parse('4242 4242 4242 4242')).to.equal('4242424242424242')
-    })
-
-    it('returns an empty string for a non-string value', function () {
-      expect(card.parse(0)).to.equal('')
-      expect(card.parse(undefined)).to.equal('')
-    })
-
+test('card', function (t) {
+  t.test('parse', function (t) {
+    t.equal(card.parse('4242-4242-4242-4242'), '4242424242424242')
+    t.equal(card.parse('4242-4242-4242-4242'), '4242424242424242')
+    t.equal(card.parse(0), '')
+    t.equal(card.parse(undefined), '')
+    t.end()
   })
 
-  describe('#format', function () {
-    it('passes through if no card is matched', function () {
-      expect(card.format('5')).to.equal('5')
-    })
-
-    it('formats cards by type', function () {
-      expect(card.format('4242424242424242')).to.equal('4242 4242 4242 4242')
-      expect(card.format('378282246310005')).to.equal('3782 822463 10005')
-    })
-
-    it('can use a custom separator', function () {
-      expect(card.format('4242424242424242', '-')).to.equal('4242-4242-4242-4242')
-    })
-
+  t.test('format', function (t) {
+    t.equal(card.format('5'), '5', 'no match')
+    t.equal(card.format('4242424242424242'), '4242 4242 4242 4242', 'visa')
+    t.equal(card.format('4242424242424242', '-'), '4242-4242-4242-4242', 'separator')
+    t.end()
   })
 
-  describe('#type', function () {
-    it('returns the card name', function () {
-      expect(card.type('4242424242424242')).to.equal('Visa')
-      expect(card.type('5555555555554444')).to.equal('MasterCard')
-      expect(card.type('378282246310005')).to.equal('American Express')
-    })
+  t.test('type', function (t) {
+    t.equal(card.type('4242424242424242'), 'Visa', 'visa')
+    t.equal(card.type('5555555555554444'), 'MasterCard', 'mc')
+    t.equal(card.type('378282246310005'), 'American Express', 'amex')
 
-    it('can run eager type checking', function () {
-      expect(card.type('42', true)).to.equal('Visa')
-      expect(card.type('55', true)).to.equal('MasterCard')
-      expect(card.type('37', true)).to.equal('American Express')
-    })
+    t.equal(card.type('42', true), 'Visa', 'visa eager')
+    t.equal(card.type('55', true), 'MasterCard', 'mc eager')
+    t.equal(card.type('37', true), 'American Express', 'amex eager')
 
-    it('returns undefined with no match', function () {
-      expect(card.type('123')).to.equal(undefined)
-    })
+    t.notOk(card.type('123'), 'no match')
 
+    t.end()
   })
 
-  describe('#luhn', function () {
-    it('returns true for a valid number', function () {
-      expect(card.luhn('4242424242424242')).to.equal(true)
-    })
+  t.test('isValid', function (t) {
+    t.ok(card.isValid('4242424242424242'))
+    t.ok(card.isValid('5555555555554444'))
+    t.ok(card.isValid('378282246310005'))
+    t.notOk(card.isValid('42'))
 
-    it('returns false for an invalid number', function () {
-      expect(card.luhn('4242424242424241')).to.equal(false)
-    })
+    t.ok(card.isValid('4242424242424242', 'Visa'), 'visa')
+    t.notOk(card.isValid('4242424242424242', 'American Express'), 'amex invalid')
+    t.ok(card.isValid('378282246310005', 'americanExpress'), 'amex valid')
 
-    it('returns false for a falsy input', function () {
-      expect(card.luhn()).to.equal(false)
-    })
+    var unionPay = '6240008631401142'
+    t.notOk(card.luhn(unionPay))
+    t.ok(card.isValid(unionPay, 'UnionPay'), 'union pay skips luhn')
 
+    t.end()
   })
 
-  describe('#isValid', function () {
-    it('ensures that some type is matched if none is specified', function () {
-      expect(card.isValid('4242424242424242')).to.equal(true)
-      expect(card.isValid('5555555555554444')).to.equal(true)
-      expect(card.isValid('378282246310005')).to.equal(true)
-      expect(card.isValid('42')).to.equal(false)
-    })
-
-    it('can validate a card against a type', function () {
-      expect(card.isValid('4242424242424242', 'Visa')).to.equal(true)
-      expect(card.isValid('4242424242424242', 'American Express')).to.equal(false)
-      expect(card.isValid('378282246310005', 'americanExpress')).to.equal(true)
-    })
-
-    it('validates UnionPay by skipping luhn', function () {
-      var number = '6240008631401142'
-      expect(card.luhn(number)).to.equal(false)
-      expect(card.isValid(number, 'UnionPay')).to.equal(true)
-    })
-
-  })
-
+  t.end()
 })

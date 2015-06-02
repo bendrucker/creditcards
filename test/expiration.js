@@ -1,96 +1,43 @@
 'use strict'
 
-/*global describe,it*/
+var test = require('tape')
+var expiration = require('../').expiration
 
-var expect = require('chai').expect
-var expiration = require('../src/expiration')
+test('expiration', function (t) {
+  t.ok(expiration.isPast(
+    new Date().getMonth(),
+    new Date().getFullYear()
+  ))
+  t.notOk(expiration.isPast(
+    new Date().getMonth() + 1,
+    new Date().getFullYear()
+  ))
 
-describe('expiration', function () {
-  describe('#isPast', function () {
-    it('checks whether the date is in the past', function () {
-      expect(expiration.isPast(
-        new Date().getMonth(),
-        new Date().getFullYear()
-      ))
-      .to.equal(true)
-      expect(expiration.isPast(
-        new Date().getMonth() + 1,
-        new Date().getFullYear()
-      ))
-      .to.equal(false)
-    })
-  })
-
-  describe('month', function () {
+  t.test('month', function (t) {
     var month = expiration.month
-
-    describe('#parse', function () {
-      it('casts valid values to numbers', function () {
-        expect(month.parse('12')).to.equal(12)
-        expect(month.parse(12)).to.equal(12)
-        expect(month.parse('08')).to.equal(8)
-        expect(month.parse(0)).to.equal(undefined)
-      })
-    })
+    t.equal(month.parse('12'), 12)
+    t.equal(month.parse(0), undefined)
+    t.end()
   })
 
-  describe('year', function () {
+  t.test('year', function (t) {
     var year = expiration.year
 
-    describe('#parse', function () {
-      it('casts values to numbers', function () {
-        expect(year.parse('12')).to.equal(12)
-        expect(year.parse(12)).to.equal(12)
-        expect(year.parse('08')).to.equal(8)
-        expect(year.parse(0)).to.equal(0)
-        expect(year.parse(0, true)).to.equal(2000)
-      })
+    t.equal(year.format('2012'), '2012')
+    t.equal(year.format(2012), '2012')
+    t.equal(year.format(2014, true), '14')
+    t.equal(year.format(2000, true), '00')
 
-      it('can pad short dates', function () {
-        expect(year.parse(12, true)).to.equal(2012)
-        expect(year.parse('12', true)).to.equal(2012)
-        expect(year.parse(5, true)).to.equal(2005)
-        expect(year.parse('5', true)).to.equal(2005)
-        expect(year.parse(10, true)).to.equal(2010)
-      })
-    })
+    t.ok(year.isValid(2015))
+    t.notOk(year.isValid('2015'))
+    t.notOk(year.isValid(2015.5))
 
-    describe('#format', function () {
-      it('casts numbers to strings', function () {
-        expect(year.format('2012')).to.equal('2012')
-        expect(year.format(2012)).to.equal('2012')
-      })
+    t.notOk(year.isPast(new Date().getFullYear()))
+    t.notOk(year.isPast(), 2100)
+    t.ok(year.isPast(2000))
 
-      it('can strip long dates', function () {
-        expect(year.format(2014, true)).to.equal('14')
-        expect(year.format(2000, true)).to.equal('00')
-      })
-    })
-
-    describe('#isValid', function () {
-      it('is true for positive numbers', function () {
-        expect(year.isValid(2000)).to.equal(true)
-        expect(year.isValid(2014)).to.equal(true)
-      })
-
-      it('is falsy for non number values', function () {
-        expect(year.isValid('2014')).to.equal(false)
-      })
-    })
-
-    describe('#isPast', function () {
-      it('is false for this year', function () {
-        var thisYear = new Date().getYear() + 1900
-        expect(year.isPast(thisYear)).to.equal(false)
-      })
-
-      it('is false for future years', function () {
-        expect(year.isPast(2100)).to.equal(false)
-      })
-
-      it('is true for past years', function () {
-        expect(year.isPast(2000)).to.equal(true)
-      })
-    })
+    t.end()
   })
+
+  t.end()
 })
