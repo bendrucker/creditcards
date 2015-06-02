@@ -1,14 +1,13 @@
-creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards) [![Code Climate](https://codeclimate.com/github/bendrucker/creditcards/badges/gpa.svg)](https://codeclimate.com/github/bendrucker/creditcards) [![Test Coverage](https://codeclimate.com/github/bendrucker/creditcards/badges/coverage.svg)](https://codeclimate.com/github/bendrucker/creditcards) [![NPM version](https://badge.fury.io/js/creditcards.svg)](http://badge.fury.io/js/creditcards)
+creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards)
 ============
 
 Utility methods for formatting and validating credit cards. With a minimal footprint and a flexible API, it's suitable for both Node and the browser.
 
-## Install
-```bash
+## Installing
+
+```sh
 # npm
 $ npm install creditcards
-# bower
-$ bower install creditcards
 ``` 
 
 ## API
