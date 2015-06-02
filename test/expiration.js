@@ -32,39 +32,6 @@ describe('expiration', function () {
         expect(month.parse(0)).to.equal(undefined)
       })
     })
-
-    describe('#isValid', function () {
-      it('is true for month numbers', function () {
-        expect(month.isValid(1)).to.equal(true)
-        expect(month.isValid(2)).to.equal(true)
-        expect(month.isValid(3)).to.equal(true)
-        expect(month.isValid(4)).to.equal(true)
-        expect(month.isValid(5)).to.equal(true)
-        expect(month.isValid(6)).to.equal(true)
-        expect(month.isValid(7)).to.equal(true)
-        expect(month.isValid(8)).to.equal(true)
-        expect(month.isValid(9)).to.equal(true)
-        expect(month.isValid(10)).to.equal(true)
-        expect(month.isValid(11)).to.equal(true)
-        expect(month.isValid(12)).to.equal(true)
-      })
-
-      it('is false for numeric strings', function () {
-        expect(month.isValid('12')).to.equal(false)
-      })
-
-      it('is false for numbers outside 1-12', function () {
-        expect(month.isValid(0)).to.equal(false)
-        expect(month.isValid(13)).to.equal(false)
-        expect(month.isValid('13')).to.equal(false)
-      })
-
-      it('is false for falsy values', function () {
-        expect(month.isValid()).to.equal(false)
-        expect(month.isValid('')).to.equal(false)
-      })
-
-    })
   })
 
   describe('year', function () {

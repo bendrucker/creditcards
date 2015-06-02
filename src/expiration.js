@@ -1,5 +1,7 @@
 'use strict'
 
+var isValidMonth = require('is-valid-month')
+
 exports.isPast = function (month, year) {
   return Date.now() >= new Date(year, month)
 }
@@ -8,10 +10,7 @@ exports.month = {
   parse: function parseExpMonth (month) {
     return ~~month || undefined
   },
-  isValid: function isExpMonthValid (month) {
-    if (typeof month !== 'number') return false
-    return month >= 1 && month <= 12
-  }
+  isValid: isValidMonth
 }
 
 var base = new Date().getFullYear().toString().substr(0, 2)
