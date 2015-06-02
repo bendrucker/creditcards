@@ -35,5 +35,10 @@
     "parse-int": "^1.0.0",
     "parse-year": "^1.0.0",
     "xtend": "~4.0.0"
-  }
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "readme.md"
+  ]
 }
