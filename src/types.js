@@ -1,7 +1,7 @@
 'use strict'
 
 var ccTypes = require('creditcards-types')
-var camel = require('camel-case')
+var camel = require('to-camel-case')
 var extend = require('xtend')
 
 module.exports = extend(ccTypes, {

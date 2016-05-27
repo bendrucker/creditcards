@@ -41,6 +41,7 @@ test('card', function (t) {
 
     t.ok(card.isValid('4242424242424242', 'Visa'), 'visa')
     t.notOk(card.isValid('4242424242424242', 'American Express'), 'amex invalid')
+    t.notOk(card.isValid('4242424242424242', 'MasterCard', 'mc invalid'))
     t.ok(card.isValid('378282246310005', 'americanExpress'), 'amex valid')
 
     var unionPay = '6240008631401142'

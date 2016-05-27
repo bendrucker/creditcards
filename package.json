@@ -28,12 +28,12 @@
     "tape": "^4.0.0"
   },
   "dependencies": {
-    "camel-case": "~1.1.2",
     "creditcards-types": "~1.6.0",
     "fast-luhn": "~1.0.1",
     "is-valid-month": "~1.0.0",
     "parse-int": "^1.0.0",
     "parse-year": "^1.0.0",
+    "to-camel-case": "~1.0.0",
     "xtend": "~4.0.0"
   },
   "files": [
