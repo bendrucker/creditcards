@@ -1,7 +1,7 @@
 'use strict'
 
 var test = require('tape')
-var expiration = require('../').expiration
+var expiration = require('./expiration')
 
 test('expiration', function (t) {
   t.ok(expiration.isPast(

@@ -1,7 +1,7 @@
 'use strict'
 
 var test = require('tape')
-var cvc = require('../').cvc
+var cvc = require('./cvc')
 
 test('cvc', function (t) {
   t.ok(cvc.isValid('123'))

@@ -6,7 +6,7 @@ creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?br
 ## Installing
 
 ```sh
-npm install --save creditcards
+$ npm install --save creditcards
 ``` 
 
 ## API
@@ -16,6 +16,12 @@ creditcards exports:
 * `card`
 * `cvc`
 * `expiration`
+
+You can also require modules individually:
+
+```js
+var card = require('creditcards/card')
+```
 
 
 ### `card`

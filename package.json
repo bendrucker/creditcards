@@ -4,7 +4,7 @@
   "description": "Utility methods for formatting and validating credit cards",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape test/*.js | tap-difflet"
+    "test": "standard && tape *.js | tap-difflet"
   },
   "repository": {
     "type": "git",
@@ -37,8 +37,6 @@
     "xtend": "~4.0.0"
   },
   "files": [
-    "index.js",
-    "src/",
-    "readme.md"
+    "*.js"
   ]
 }

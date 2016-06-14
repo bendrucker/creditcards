@@ -1,7 +1,7 @@
 'use strict'
 
 var test = require('tape')
-var card = require('../').card
+var card = require('./card')
 
 test('card', function (t) {
   t.test('parse', function (t) {
