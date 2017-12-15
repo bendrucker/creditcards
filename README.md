@@ -6,7 +6,7 @@ creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?br
 ## Installing
 
 ```sh
-$ npm install --save creditcards
+npm install --save creditcards
 ``` 
 
 ## API
@@ -17,10 +17,17 @@ creditcards exports:
 * `cvc`
 * `expiration`
 
-You can also require modules individually:
+You can also require modules individually if you wish to pass in custom types. `card` and `cvc` each export a function that accepts an array of card types [(see `creditcards-types`)](https://github.com/bendrucker/creditcards-types). `expiration` returns an object.
 
 ```js
-var card = require('creditcards/card')
+var Card = require('creditcards/card')
+var card = Card([visa])
+card.isValid('4242424242424242')
+// => true
+
+var expiration = require('creditcards/expiration')
+expiration.isPast(10, 2010)
+// => true
 ```
 
 
