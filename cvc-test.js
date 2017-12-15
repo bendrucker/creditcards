@@ -1,8 +1,11 @@
 'use strict'
 
 var test = require('tape')
-var cvc = require('./cvc')
+var Cvc = require('./cvc')
+var types = require('creditcards-types')
 var visa = require('creditcards-types/types/visa')
+
+var cvc = Cvc(types)
 
 test('cvc', function (t) {
   t.ok(cvc.isValid('123'))
@@ -17,9 +20,10 @@ test('cvc', function (t) {
 
   t.notOk(cvc.isValid(123))
 
-  var visaCvc = cvc.withTypes([visa])
+  var visaCvc = Cvc([visa])
 
   t.ok(visaCvc.isValid('123'))
+  t.notOk(visaCvc.isValid('1234'), 'no type matches length')
   t.throws(function () {
     visaCvc.isValid('1234', 'American Express')
   }, /no type found/i)

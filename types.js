@@ -13,6 +13,7 @@ function CardTypes (types) {
 
   return {
     find: types.find.bind(types),
+    some: types.some.bind(types),
     get: get
   }
 
