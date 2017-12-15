@@ -2,6 +2,7 @@
 
 var test = require('tape')
 var card = require('./card')
+var visa = require('creditcards-types/types/visa')
 
 test('card', function (t) {
   t.test('parse', function (t) {
@@ -21,11 +22,11 @@ test('card', function (t) {
 
   t.test('type', function (t) {
     t.equal(card.type('4242424242424242'), 'Visa', 'visa')
-    t.equal(card.type('5555555555554444'), 'MasterCard', 'mc')
+    t.equal(card.type('5555555555554444'), 'Mastercard', 'mc')
     t.equal(card.type('378282246310005'), 'American Express', 'amex')
 
     t.equal(card.type('42', true), 'Visa', 'visa eager')
-    t.equal(card.type('55', true), 'MasterCard', 'mc eager')
+    t.equal(card.type('55', true), 'Mastercard', 'mc eager')
     t.equal(card.type('37', true), 'American Express', 'amex eager')
 
     t.notOk(card.type('123'), 'no match')
@@ -41,13 +42,20 @@ test('card', function (t) {
 
     t.ok(card.isValid('4242424242424242', 'Visa'), 'visa')
     t.notOk(card.isValid('4242424242424242', 'American Express'), 'amex invalid')
-    t.notOk(card.isValid('4242424242424242', 'MasterCard', 'mc invalid'))
-    t.ok(card.isValid('378282246310005', 'americanExpress'), 'amex valid')
+    t.notOk(card.isValid('4242424242424242', 'Mastercard', 'mc invalid'))
+    t.ok(card.isValid('378282246310005', 'American Express'), 'amex valid')
 
     var unionPay = '6240008631401142'
     t.notOk(card.luhn(unionPay))
     t.ok(card.isValid(unionPay, 'UnionPay'), 'union pay skips luhn')
 
+    t.end()
+  })
+
+  t.test('withTypes', function (t) {
+    var customCard = card.withTypes([visa])
+    t.ok(customCard.isValid('4242424242424242'), 'visa valid')
+    t.notOk(customCard.isValid('5555555555554444'), 'mc invalid')
     t.end()
   })
 
