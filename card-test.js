@@ -1,8 +1,11 @@
 'use strict'
 
 var test = require('tape')
-var card = require('./card')
+var types = require('creditcards-types')
+var Card = require('./card')
 var visa = require('creditcards-types/types/visa')
+
+var card = Card(types)
 
 test('card', function (t) {
   t.test('parse', function (t) {
@@ -52,8 +55,8 @@ test('card', function (t) {
     t.end()
   })
 
-  t.test('withTypes', function (t) {
-    var customCard = card.withTypes([visa])
+  t.test('custom types', function (t) {
+    var customCard = Card([visa])
     t.ok(customCard.isValid('4242424242424242'), 'visa valid')
     t.notOk(customCard.isValid('5555555555554444'), 'mc invalid')
     t.end()

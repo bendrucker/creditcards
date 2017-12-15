@@ -3,8 +3,7 @@
 var luhn = require('fast-luhn')
 var Types = require('./types')
 
-module.exports = Card(Types.defaults)
-module.exports.withTypes = Card
+module.exports = Card
 
 function Card (data) {
   var types = Types(data)
