@@ -28,7 +28,7 @@
     "tape": "^4.0.0"
   },
   "dependencies": {
-    "creditcards-types": "~1.6.0",
+    "creditcards-types": "bendrucker/creditcards-types#v2",
     "fast-luhn": "~1.0.1",
     "is-valid-month": "~1.0.0",
     "parse-int": "^1.0.0",
