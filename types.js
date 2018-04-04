@@ -12,9 +12,35 @@ function CardTypes (types) {
   }, {})
 
   return {
-    find: types.find.bind(types),
-    some: types.some.bind(types),
+    find: find,
+    some: some,
     get: get
+  }
+
+  function find (test) {
+    return types.reduce(
+      function (previous, current) {
+        if (previous !== null) {
+          return previous
+        }
+
+        if (test(current)) {
+          return current
+        } else {
+          return null
+        }
+      },
+      null
+    )
+  }
+
+  function some (test) {
+    return types.reduce(
+      function (previousValue, type) {
+        return test(type) || previousValue
+      },
+      false
+    )
   }
 
   function get (name) {
