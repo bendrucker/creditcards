@@ -13,7 +13,7 @@ function CardTypes (types) {
 
   return {
     find: find,
-    some: some,
+    some: types.some.bind(types),
     get: get
   }
 
@@ -31,15 +31,6 @@ function CardTypes (types) {
         }
       },
       null
-    )
-  }
-
-  function some (test) {
-    return types.reduce(
-      function (previousValue, type) {
-        return test(type) || previousValue
-      },
-      false
     )
   }
 
