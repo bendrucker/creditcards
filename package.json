@@ -4,7 +4,7 @@
   "description": "Utility methods for formatting and validating credit cards",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape *.js | tap-difflet"
+    "test": "standard && tape *.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,6 @@
   "homepage": "https://github.com/bendrucker/creditcards",
   "devDependencies": {
     "standard": "^8.0.0",
-    "tap-difflet": "^0.7.0",
     "tape": "^4.0.0"
   },
   "dependencies": {
