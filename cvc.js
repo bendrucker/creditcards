@@ -25,4 +25,3 @@ function Cvc (data) {
     return types.get(type).cvcLength === cvc.length
   }
 }
-
