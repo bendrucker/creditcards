@@ -24,7 +24,7 @@
   "homepage": "https://github.com/bendrucker/creditcards",
   "devDependencies": {
     "standard": "^14.0.0",
-    "tape": "^4.0.0"
+    "tape": "^5.0.0"
   },
   "dependencies": {
     "array-find": "~1.0.0",
