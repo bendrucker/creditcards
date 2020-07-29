@@ -1,5 +1,4 @@
-creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards) [![Greenkeeper badge](https://badges.greenkeeper.io/bendrucker/creditcards.svg)](https://greenkeeper.io/)
-============
+# creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards)
 
 > Parse, format, and validate credit card data.
 
