@@ -1,6 +1,5 @@
 'use strict'
 
-var find = require('array-find')
 var defaults = require('creditcards-types')
 
 module.exports = CardTypes
@@ -13,7 +12,7 @@ function CardTypes (types) {
   }, {})
 
   return {
-    find: find.bind(null, types),
+    find: types.find.bind(types),
     some: types.some.bind(types),
     get: get
   }
