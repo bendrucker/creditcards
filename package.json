@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "array-find": "~1.0.0",
-    "creditcards-types": "~2.2.0",
+    "creditcards-types": "~3.0.0",
     "fast-luhn": "~1.1.0",
     "is-valid-month": "~1.0.0",
     "parse-int": "^1.0.0",
@@ -36,5 +36,8 @@
   },
   "files": [
     "*.js"
-  ]
+  ],
+  "engines": {
+    "node": ">= 10"
+  }
 }
