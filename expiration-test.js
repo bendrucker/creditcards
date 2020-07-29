@@ -1,7 +1,7 @@
 'use strict'
 
-var test = require('tape')
-var expiration = require('./expiration')
+const test = require('tape')
+const expiration = require('./expiration')
 
 test('expiration', function (t) {
   t.ok(expiration.isPast(
@@ -14,13 +14,13 @@ test('expiration', function (t) {
   ))
 
   t.test('month', function (t) {
-    var month = expiration.month
+    const month = expiration.month
     t.equal(month.parse('12'), 12)
     t.end()
   })
 
   t.test('year', function (t) {
-    var year = expiration.year
+    const year = expiration.year
 
     t.equal(year.format('2012'), '2012')
     t.equal(year.format(2012), '2012')

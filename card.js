@@ -1,12 +1,12 @@
 'use strict'
 
-var luhn = require('fast-luhn')
-var Types = require('./types')
+const luhn = require('fast-luhn')
+const Types = require('./types')
 
 module.exports = Card
 
 function Card (data) {
-  var types = Types(data)
+  const types = Types(data)
 
   return {
     types: data,
@@ -23,13 +23,13 @@ function Card (data) {
   }
 
   function formatCard (number, separator) {
-    var type = getType(number, true)
+    const type = getType(number, true)
     if (!type) return number
     return type.group(number).join(separator || ' ')
   }
 
   function cardType (number, eager) {
-    var type = getType(number, eager)
+    const type = getType(number, eager)
     return type ? type.name : undefined
   }
 

@@ -1,8 +1,8 @@
 'use strict'
 
-var isValidMonth = require('is-valid-month')
-var parseIntStrict = require('parse-int')
-var parseYear = require('parse-year')
+const isValidMonth = require('is-valid-month')
+const parseIntStrict = require('parse-int')
+const parseYear = require('parse-year')
 
 module.exports = {
   isPast: isPast,

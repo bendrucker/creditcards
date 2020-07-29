@@ -1,9 +1,9 @@
 'use strict'
 
-var types = require('creditcards-types')
-var Card = require('./card')
-var Cvc = require('./cvc')
-var expiration = require('./expiration')
+const types = require('creditcards-types')
+const Card = require('./card')
+const Cvc = require('./cvc')
+const expiration = require('./expiration')
 
 module.exports = withTypes(types)
 module.exports.withTypes = withTypes

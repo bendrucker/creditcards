@@ -1,11 +1,11 @@
 'use strict'
 
-var test = require('tape')
-var types = require('creditcards-types')
-var Card = require('./card')
-var visa = require('creditcards-types/types/visa')
+const test = require('tape')
+const types = require('creditcards-types')
+const Card = require('./card')
+const visa = require('creditcards-types/types/visa')
 
-var card = Card(types)
+const card = Card(types)
 
 test('card', function (t) {
   t.test('parse', function (t) {
@@ -48,7 +48,7 @@ test('card', function (t) {
     t.notOk(card.isValid('4242424242424242', 'Mastercard', 'mc invalid'))
     t.ok(card.isValid('378282246310005', 'American Express'), 'amex valid')
 
-    var unionPay = '6240008631401142'
+    const unionPay = '6240008631401142'
     t.notOk(card.luhn(unionPay))
     t.ok(card.isValid(unionPay, 'UnionPay'), 'union pay skips luhn')
 
@@ -56,7 +56,7 @@ test('card', function (t) {
   })
 
   t.test('custom types', function (t) {
-    var customCard = Card([visa])
+    const customCard = Card([visa])
     t.ok(customCard.isValid('4242424242424242'), 'visa valid')
     t.notOk(customCard.isValid('5555555555554444'), 'mc invalid')
     t.end()

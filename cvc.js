@@ -1,12 +1,12 @@
 'use strict'
 
-var Types = require('./types')
-var cvcRegex = /^\d{3,4}$/
+const Types = require('./types')
+const cvcRegex = /^\d{3,4}$/
 
 module.exports = Cvc
 
 function Cvc (data) {
-  var types = Types(data)
+  const types = Types(data)
 
   return {
     isValid: cvcIsValid

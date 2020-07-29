@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var amex = require('creditcards-types/types/american-express')
-var creditcards = require('./')
+const test = require('tape')
+const amex = require('creditcards-types/types/american-express')
+const creditcards = require('./')
 
 test('main', function (t) {
   t.ok(creditcards.card.isValid('4242424242424242'))
