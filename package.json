@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/bendrucker/creditcards",
   "devDependencies": {
-    "standard": "^14.0.0",
+    "standard": "^15.0.0",
     "tape": "^5.0.0"
   },
   "dependencies": {
