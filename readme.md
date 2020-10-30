@@ -1,4 +1,4 @@
-# creditcards [![Build Status](https://travis-ci.org/bendrucker/creditcards.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards)
+# creditcards [![tests](https://github.com/bendrucker/creditcards/workflows/tests/badge.svg)](https://github.com/bendrucker/creditcards/actions?query=workflow%3Atests)
 
 > Parse, format, and validate credit card data.
 
