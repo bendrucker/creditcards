@@ -13,7 +13,7 @@ export interface CardType {
 interface ICardTypes {
   find: (
     callback: (element: CardType, index: number, array: CardType[]) => void
-  ) => undefined | any;
+  ) => CardType | undefined;
   some: (
     callback: (element: CardType, index: number, array: CardType[]) => void
   ) => boolean;
