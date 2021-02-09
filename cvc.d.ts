@@ -1,6 +1,6 @@
 import { CardType } from "./types";
 
-interface ICvc {
+export interface ICvc {
   isValid(cvc: string, type?: string): boolean;
 }
 
