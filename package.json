@@ -34,7 +34,8 @@
     "parse-year": "^1.0.0"
   },
   "files": [
-    "*.js"
+    "*.js",
+    "*.d.ts"
   ],
   "engines": {
     "node": ">= 10"
