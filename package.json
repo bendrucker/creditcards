@@ -4,7 +4,7 @@
   "description": "Utility methods for formatting and validating credit cards",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape *.js"
+    "test": "standard && tape *.js && tsd"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,8 @@
   "homepage": "https://github.com/bendrucker/creditcards",
   "devDependencies": {
     "standard": "^16.0.0",
-    "tape": "^5.0.1"
+    "tape": "^5.0.1",
+    "tsd": "^0.14.0"
   },
   "dependencies": {
     "creditcards-types": "~3.0.1",
