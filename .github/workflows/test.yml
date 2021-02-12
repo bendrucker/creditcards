@@ -1,3 +1,5 @@
+on: [push, pull_request]
+name: tests
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +17,3 @@ jobs:
         - "10"
         - "12"
         - "14"
-name: tests
-"on":
-- push
