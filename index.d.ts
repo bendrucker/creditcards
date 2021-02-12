@@ -8,7 +8,7 @@ export const cvc: ICvc;
 export const expiration: IExpiration;
 
 export function withTypes(
-  types: Partial<CardType>[]
+  types: CardType[]
 ): {
   card: ICard;
   cvc: ICvc;

@@ -1,14 +1,19 @@
-export interface CardType {
-  name: string;
+interface BaseCard {
+  luhn: boolean;
   digits: number | number[];
   cvcLength: number;
-  luhn: boolean;
-  pattern: RegExp;
-  eagerPatter: RegExp;
   groupPattern: RegExp;
   group(number: string): string[];
   test(number: string, eager: boolean): boolean;
 }
+
+interface CardData {
+  name: string;
+  pattern: RegExp;
+  eagerPattern: RegExp;
+}
+
+export type CardType = BaseCard & CardData;
 
 interface ICardTypes {
   find: (
