@@ -28,9 +28,9 @@
     "tsd": "^0.14.0"
   },
   "dependencies": {
-    "creditcards-types": "~3.1.0",
-    "fast-luhn": "~2.0.0",
-    "is-valid-month": "~1.0.0",
+    "creditcards-types": "^3.1.0",
+    "fast-luhn": "^2.0.0",
+    "is-valid-month": "^1.0.0",
     "parse-int": "^1.0.3",
     "parse-year": "^1.0.0"
   },
