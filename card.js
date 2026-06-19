@@ -1,9 +1,7 @@
-'use strict'
+import luhn from 'fast-luhn'
+import Types from './types.js'
 
-const luhn = require('fast-luhn')
-const Types = require('./types')
-
-module.exports = Card
+export default Card
 
 function Card (data) {
   const types = Types(data)

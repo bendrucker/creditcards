@@ -1,32 +1,29 @@
-'use strict'
-
-const test = require('tape')
-const Cvc = require('./cvc')
-const types = require('creditcards-types')
-const visa = require('creditcards-types/types/visa')
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import types from 'creditcards-types'
+import visa from 'creditcards-types/types/visa'
+import Cvc from './cvc.js'
 
 const cvc = Cvc(types)
 
-test('cvc', function (t) {
-  t.ok(cvc.isValid('123'))
-  t.ok(cvc.isValid('1234'))
-  t.notOk(cvc.isValid('12'))
-  t.notOk(cvc.isValid('12345'))
+test('cvc', () => {
+  assert.ok(cvc.isValid('123'))
+  assert.ok(cvc.isValid('1234'))
+  assert.ok(!cvc.isValid('12'))
+  assert.ok(!cvc.isValid('12345'))
 
-  t.ok(cvc.isValid('123', 'Visa'))
-  t.notOk(cvc.isValid('1234', 'Visa'))
-  t.notOk(cvc.isValid('123', 'American Express'))
-  t.ok(cvc.isValid('1234', 'American Express'))
+  assert.ok(cvc.isValid('123', 'Visa'))
+  assert.ok(!cvc.isValid('1234', 'Visa'))
+  assert.ok(!cvc.isValid('123', 'American Express'))
+  assert.ok(cvc.isValid('1234', 'American Express'))
 
-  t.notOk(cvc.isValid(123))
+  assert.ok(!cvc.isValid(123))
 
   const visaCvc = Cvc([visa])
 
-  t.ok(visaCvc.isValid('123'))
-  t.notOk(visaCvc.isValid('1234'), 'no type matches length')
-  t.throws(function () {
+  assert.ok(visaCvc.isValid('123'))
+  assert.ok(!visaCvc.isValid('1234'), 'no type matches length')
+  assert.throws(function () {
     visaCvc.isValid('1234', 'American Express')
   }, /no type found/i)
-
-  t.end()
 })

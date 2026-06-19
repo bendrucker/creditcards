@@ -1,17 +1,18 @@
-'use strict'
+import Card from './card.js'
+import Cvc from './cvc.js'
+import * as expiration from './expiration.js'
+import types from 'creditcards-types'
 
-const types = require('creditcards-types')
-const Card = require('./card')
-const Cvc = require('./cvc')
-const expiration = require('./expiration')
-
-module.exports = withTypes(types)
-module.exports.withTypes = withTypes
-
-function withTypes (types) {
+export function withTypes (types) {
   return {
     card: Card(types),
     cvc: Cvc(types),
-    expiration: expiration
+    expiration
   }
 }
+
+const defaults = withTypes(types)
+
+export const card = defaults.card
+export const cvc = defaults.cvc
+export { expiration }

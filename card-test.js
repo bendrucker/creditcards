@@ -1,66 +1,56 @@
-'use strict'
-
-const test = require('tape')
-const types = require('creditcards-types')
-const Card = require('./card')
-const visa = require('creditcards-types/types/visa')
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import types from 'creditcards-types'
+import visa from 'creditcards-types/types/visa'
+import Card from './card.js'
 
 const card = Card(types)
 
-test('card', function (t) {
-  t.test('parse', function (t) {
-    t.equal(card.parse('4242-4242-4242-4242'), '4242424242424242')
-    t.equal(card.parse('4242-4242-4242-4242'), '4242424242424242')
-    t.equal(card.parse(0), '')
-    t.equal(card.parse(undefined), '')
-    t.end()
+test('card', async (t) => {
+  await t.test('parse', () => {
+    assert.equal(card.parse('4242-4242-4242-4242'), '4242424242424242')
+    assert.equal(card.parse('4242-4242-4242-4242'), '4242424242424242')
+    assert.equal(card.parse(0), '')
+    assert.equal(card.parse(undefined), '')
   })
 
-  t.test('format', function (t) {
-    t.equal(card.format('5'), '5', 'no match')
-    t.equal(card.format('4242424242424242'), '4242 4242 4242 4242', 'visa')
-    t.equal(card.format('4242424242424242', '-'), '4242-4242-4242-4242', 'separator')
-    t.end()
+  await t.test('format', () => {
+    assert.equal(card.format('5'), '5', 'no match')
+    assert.equal(card.format('4242424242424242'), '4242 4242 4242 4242', 'visa')
+    assert.equal(card.format('4242424242424242', '-'), '4242-4242-4242-4242', 'separator')
   })
 
-  t.test('type', function (t) {
-    t.equal(card.type('4242424242424242'), 'Visa', 'visa')
-    t.equal(card.type('5555555555554444'), 'Mastercard', 'mc')
-    t.equal(card.type('378282246310005'), 'American Express', 'amex')
+  await t.test('type', () => {
+    assert.equal(card.type('4242424242424242'), 'Visa', 'visa')
+    assert.equal(card.type('5555555555554444'), 'Mastercard', 'mc')
+    assert.equal(card.type('378282246310005'), 'American Express', 'amex')
 
-    t.equal(card.type('42', true), 'Visa', 'visa eager')
-    t.equal(card.type('55', true), 'Mastercard', 'mc eager')
-    t.equal(card.type('37', true), 'American Express', 'amex eager')
+    assert.equal(card.type('42', true), 'Visa', 'visa eager')
+    assert.equal(card.type('55', true), 'Mastercard', 'mc eager')
+    assert.equal(card.type('37', true), 'American Express', 'amex eager')
 
-    t.notOk(card.type('123'), 'no match')
-
-    t.end()
+    assert.ok(!card.type('123'), 'no match')
   })
 
-  t.test('isValid', function (t) {
-    t.ok(card.isValid('4242424242424242'))
-    t.ok(card.isValid('5555555555554444'))
-    t.ok(card.isValid('378282246310005'))
-    t.notOk(card.isValid('42'))
+  await t.test('isValid', () => {
+    assert.ok(card.isValid('4242424242424242'))
+    assert.ok(card.isValid('5555555555554444'))
+    assert.ok(card.isValid('378282246310005'))
+    assert.ok(!card.isValid('42'))
 
-    t.ok(card.isValid('4242424242424242', 'Visa'), 'visa')
-    t.notOk(card.isValid('4242424242424242', 'American Express'), 'amex invalid')
-    t.notOk(card.isValid('4242424242424242', 'Mastercard', 'mc invalid'))
-    t.ok(card.isValid('378282246310005', 'American Express'), 'amex valid')
+    assert.ok(card.isValid('4242424242424242', 'Visa'), 'visa')
+    assert.ok(!card.isValid('4242424242424242', 'American Express'), 'amex invalid')
+    assert.ok(!card.isValid('4242424242424242', 'Mastercard'), 'mc invalid')
+    assert.ok(card.isValid('378282246310005', 'American Express'), 'amex valid')
 
     const unionPay = '6240008631401142'
-    t.notOk(card.luhn(unionPay))
-    t.ok(card.isValid(unionPay, 'UnionPay'), 'union pay skips luhn')
-
-    t.end()
+    assert.ok(!card.luhn(unionPay))
+    assert.ok(card.isValid(unionPay, 'UnionPay'), 'union pay skips luhn')
   })
 
-  t.test('custom types', function (t) {
+  await t.test('custom types', () => {
     const customCard = Card([visa])
-    t.ok(customCard.isValid('4242424242424242'), 'visa valid')
-    t.notOk(customCard.isValid('5555555555554444'), 'mc invalid')
-    t.end()
+    assert.ok(customCard.isValid('4242424242424242'), 'visa valid')
+    assert.ok(!customCard.isValid('5555555555554444'), 'mc invalid')
   })
-
-  t.end()
 })

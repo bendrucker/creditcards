@@ -1,15 +1,12 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import amex from 'creditcards-types/types/american-express'
+import { card, cvc, expiration, withTypes } from './index.js'
 
-const test = require('tape')
-const amex = require('creditcards-types/types/american-express')
-const creditcards = require('./')
+test('main', () => {
+  assert.ok(card.isValid('4242424242424242'))
+  assert.ok(cvc.isValid('123'))
+  assert.ok(expiration.isPast(10, 2010))
 
-test('main', function (t) {
-  t.ok(creditcards.card.isValid('4242424242424242'))
-  t.ok(creditcards.cvc.isValid('123'))
-  t.ok(creditcards.expiration.isPast(10, 2010))
-
-  t.notOk(creditcards.withTypes([amex]).card.isValid('4242424242424242'))
-
-  t.end()
+  assert.ok(!withTypes([amex]).card.isValid('4242424242424242'))
 })
