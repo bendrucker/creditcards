@@ -1,42 +1,36 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import * as expiration from './expiration.js'
 
-const test = require('tape')
-const expiration = require('./expiration')
-
-test('expiration', function (t) {
-  t.ok(expiration.isPast(
+test('expiration', async (t) => {
+  assert.ok(expiration.isPast(
     new Date().getMonth(),
     new Date().getFullYear()
   ))
-  t.notOk(expiration.isPast(
+  assert.ok(!expiration.isPast(
     new Date().getMonth() + 1,
     new Date().getFullYear()
   ))
 
-  t.test('month', function (t) {
+  await t.test('month', () => {
     const month = expiration.month
-    t.equal(month.parse('12'), 12)
-    t.end()
+    assert.equal(month.parse('12'), 12)
   })
 
-  t.test('year', function (t) {
+  await t.test('year', () => {
     const year = expiration.year
 
-    t.equal(year.format('2012'), '2012')
-    t.equal(year.format(2012), '2012')
-    t.equal(year.format(2014, true), '14')
-    t.equal(year.format(2000, true), '00')
+    assert.equal(year.format('2012'), '2012')
+    assert.equal(year.format(2012), '2012')
+    assert.equal(year.format(2014, true), '14')
+    assert.equal(year.format(2000, true), '00')
 
-    t.ok(year.isValid(2015))
-    t.notOk(year.isValid('2015'))
-    t.notOk(year.isValid(2015.5))
+    assert.ok(year.isValid(2015))
+    assert.ok(!year.isValid('2015'))
+    assert.ok(!year.isValid(2015.5))
 
-    t.notOk(year.isPast(new Date().getFullYear()))
-    t.notOk(year.isPast(), 2100)
-    t.ok(year.isPast(2000))
-
-    t.end()
+    assert.ok(!year.isPast(new Date().getFullYear()))
+    assert.ok(!year.isPast(2100))
+    assert.ok(year.isPast(2000))
   })
-
-  t.end()
 })

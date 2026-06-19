@@ -1,9 +1,8 @@
-'use strict'
+import Types from './types.js'
 
-const Types = require('./types')
 const cvcRegex = /^\d{3,4}$/
 
-module.exports = Cvc
+export default Cvc
 
 function Cvc (data) {
   const types = Types(data)

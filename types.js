@@ -1,9 +1,7 @@
-'use strict'
+import defaults from 'creditcards-types'
 
-const defaults = require('creditcards-types')
-
-module.exports = CardTypes
-module.exports.defaults = defaults
+export default CardTypes
+export { defaults }
 
 function CardTypes (types) {
   const map = types.reduce(function (acc, type) {

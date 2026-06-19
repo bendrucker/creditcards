@@ -1,25 +1,21 @@
-'use strict'
+import isValidMonth from 'is-valid-month'
+import parseIntStrict from 'parse-int'
+import parseYear from 'parse-year'
 
-const isValidMonth = require('is-valid-month')
-const parseIntStrict = require('parse-int')
-const parseYear = require('parse-year')
-
-module.exports = {
-  isPast: isPast,
-  month: {
-    parse: parseMonth,
-    isValid: isValidMonth
-  },
-  year: {
-    parse: parseYear,
-    format: formatExpYear,
-    isValid: isExpYearValid,
-    isPast: isExpYearPast
-  }
+export function isPast (month, year) {
+  return Date.now() >= new Date(year, month)
 }
 
-function isPast (month, year) {
-  return Date.now() >= new Date(year, month)
+export const month = {
+  parse: parseMonth,
+  isValid: isValidMonth
+}
+
+export const year = {
+  parse: parseYear,
+  format: formatExpYear,
+  isValid: isExpYearValid,
+  isPast: isExpYearPast
 }
 
 function parseMonth (month) {

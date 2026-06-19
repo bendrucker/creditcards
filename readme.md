@@ -17,15 +17,16 @@ creditcards exports:
 * `expiration`
 * `withTypes` (constructs a new copy of the module with custom types)
 
-You can also require modules individually. This is particularly useful if you wish to pass in custom types. `card` and `cvc` each export a function that accepts an array of card types [(see `creditcards-types`)](https://github.com/bendrucker/creditcards-types). `expiration` returns an object.
+To validate against a custom set of card types, pass an array of types [(see `creditcards-types`)](https://github.com/bendrucker/creditcards-types) to `withTypes`. It returns `card`, `cvc`, and `expiration` bound to those types.
 
 ```js
-const Card = require('creditcards/card')
-const card = Card([visa])
+import { withTypes, expiration } from 'creditcards'
+import visa from 'creditcards-types/types/visa'
+
+const { card } = withTypes([visa])
 card.isValid('4242424242424242')
 // => true
 
-const expiration = require('creditcards/expiration')
 expiration.isPast(10, 2010)
 // => true
 ```
