@@ -1,5 +1,5 @@
 import {expectType} from 'tsd';
-import {card, cvc, expiration} from '.';
+import {card, cvc, expiration} from 'creditcards';
 
 expectType<string>(card.parse('4242424242424242'))
 

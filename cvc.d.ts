@@ -1,4 +1,4 @@
-import { CardType } from "./types";
+import { CardType } from "./types.js";
 
 export interface ICvc {
   isValid(cvc: string, type?: string): boolean;
