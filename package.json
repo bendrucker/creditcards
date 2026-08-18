@@ -7,7 +7,7 @@
     ".": { "types": "./index.d.ts", "default": "./index.js" }
   },
   "scripts": {
-    "test": "eslint . && node --test && tsd"
+    "test": "eslint . && tsc && node --test && tsd"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,8 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.5.0",
     "globals": "^17.6.0",
-    "tsd": "^0.33.0"
+    "tsd": "^0.33.0",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "creditcards-types": "^5.0.0",
@@ -44,5 +45,11 @@
   ],
   "engines": {
     "node": ">= 22"
+  },
+  "tsd": {
+    "compilerOptions": {
+      "module": "nodenext",
+      "moduleResolution": "nodenext"
+    }
   }
 }

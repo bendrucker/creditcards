@@ -1,7 +1,7 @@
-import { ICard } from "./card";
-import { ICvc } from "./cvc";
-import { IExpiration } from "./expiration";
-import { CardType } from "./types";
+import { ICard } from "./card.js";
+import { ICvc } from "./cvc.js";
+import { IExpiration } from "./expiration.js";
+import { CardType } from "./types.js";
 
 export const card: ICard;
 export const cvc: ICvc;
