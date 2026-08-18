@@ -1,10 +1,13 @@
 {
   "name": "creditcards",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "Utility methods for formatting and validating credit cards",
   "type": "module",
   "exports": {
-    ".": { "types": "./index.d.ts", "default": "./index.js" }
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
   },
   "scripts": {
     "test": "eslint . && tsc && node --test && tsd"
